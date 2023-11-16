@@ -1,4 +1,5 @@
 import MovieApp from './components/MovieApp/MovieApp';
+import TaskApi from './components/TaskAPI/TaskAPI';
 
 
 function App() {
@@ -9,7 +10,9 @@ function App() {
       <div>
         <MovieApp/>
       </div>
-      <div></div>
+      <div>
+        <TaskApi/>
+      </div>
     </div>
   )
 }
