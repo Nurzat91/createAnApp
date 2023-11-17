@@ -6,11 +6,11 @@ function App() {
 
 
   return (
-    <div className="container">
-      <div>
+    <div className="container d-flex mt-3">
+      <div className="col-6 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
         <MovieApp/>
       </div>
-      <div>
+      <div className="col-6 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
         <TaskApi/>
       </div>
     </div>

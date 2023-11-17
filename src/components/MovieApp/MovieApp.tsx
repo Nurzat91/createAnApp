@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <div className="d-flex mt-2">
+      <div className="d-flex">
         <input
           className="form-control"
           type="text"
