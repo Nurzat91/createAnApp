@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {Joke} from '../../types';
 import PostJokes from '../PostJokes/PostJokes';
+import GetJokes from '../GetJokes/GetJokes';
 
 const TaskApi = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -33,7 +34,7 @@ const TaskApi = () => {
 
   return (
     <>
-      <button type="button" className="btn btn-outline-dark" onClick={fetchNewJokes}>Get new jokes</button>
+      <GetJokes onClick={fetchNewJokes}/>
       <div>
         {jokes.map((joke) => (
           <PostJokes
