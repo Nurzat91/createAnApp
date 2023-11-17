@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {Joke} from '../../types';
 import PostJokes from '../PostJokes/PostJokes';
 import GetJokes from '../GetJokes/GetJokes';
-import './App.css';
+import './Loader.css';
 
 const TaskApi = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -11,20 +11,18 @@ const TaskApi = () => {
   const fetchJokes = async () => {
     try {
       setIsLoading(true);
-      const responses = await Promise.all(
-        Array.from({ length: 5 }, () => fetch('https://api.chucknorris.io/jokes/random'))
-      );
+      const jokeData: { value: string; id: string }[] = [];
 
-      const jokeData = await Promise.all(responses.map((response) => response.json()));
-      const getJokesData = jokeData.map((joke: { value: string; id: string }) => ({
-        value: joke.value,
-        id: joke.id,
-      }));
-      setJokes(getJokesData);
+      for (let i = 0; i < 5; i++) {
+        const response = await fetch('https://api.chucknorris.io/jokes/random');
+        const data = await response.json();
+        jokeData.push({ value: data.value, id: data.id });
+      }
+
+      setJokes(jokeData);
     } catch (error) {
       console.error('Error:', error);
-    }
-    finally {
+    } finally {
       setIsLoading(false);
     }
   };
