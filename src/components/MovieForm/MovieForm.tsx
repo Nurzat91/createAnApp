@@ -11,6 +11,7 @@ interface MovieListProps {
 const MovieForm: React.FC<MovieListProps> = ({ movies, onDelete, onUpdate }) => {
   return (
     <div>
+      <h3 className="m-2">To watch list:</h3>
       {movies.map((movie) => (
         <MovieItem key={movie.id} movie={movie} onDelete={onDelete} onUpdate={onUpdate} />
       ))}

@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Movie} from '../../types';
 import MovieForm from '../MovieForm/MovieForm';
 
-
 const App: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const startMovies: Movie[] = [
+    { id: 1, title: 'Story of Kunning Palace' },
+    { id: 2, title: ' Alchemy of Souls: Light and Shadow' },
+  ];
+  const [movies, setMovies] = useState<Movie[]>(startMovies);
   const [newMovieTitle, setNewMovieTitle] = useState('');
+
+  useEffect(() => {
+    const getStoredMovies = localStorage.getItem('movies');
+    if (getStoredMovies) {
+      setMovies(JSON.parse(getStoredMovies));
+    } else {
+      localStorage.setItem('movies', JSON.stringify(startMovies));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('movies', JSON.stringify(movies));
+  }, [movies]);
 
   const addMovie = () => {
     if (newMovieTitle !== '') {
